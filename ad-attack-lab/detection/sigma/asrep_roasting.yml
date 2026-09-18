@@ -1,0 +1,30 @@
+title: AS-REP Roasting - TGT for a pre-auth-disabled account (RC4)
+id: 84043a78-a4ab-438d-82c2-9941129ecdb6
+status: experimental
+description: >
+  A Kerberos TGT (AS-REQ) issued for an account that does not require
+  pre-authentication, encrypted with RC4-HMAC. This is the on-the-wire
+  signature of AS-REP roasting (e.g. impacket GetNPUsers), which needs no
+  credentials at all.
+references:
+  - https://github.com/1chunghu/security-labs/tree/main/ad-attack-lab
+author: 1chung
+date: 2026-09-18
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4768
+    PreAuthType: '0'
+    TicketEncryptionType: '0x17'
+  filter_machine:
+    TargetUserName|endswith: '$'
+  condition: selection and not filter_machine
+falsepositives:
+  - Legacy accounts deliberately set with 'Do not require Kerberos preauthentication'.
+    In a healthy domain this is near-zero and every such account should be inventoried.
+level: high
+tags:
+  - attack.credential_access
+  - attack.t1558.004

@@ -7,7 +7,7 @@ click-by-click screenshots.
 
 | Lab | What it demonstrates |
 |-----|----------------------|
-| [**Active Directory attack lab**](ad-attack-lab/) | Taking a Windows domain from an unauthenticated foothold to Domain Admin using **only misconfigurations — no software exploits**. Kerberoasting, AS-REP roasting, credential-in-description, and a weak-password path to DA. |
+| [**Active Directory attack lab**](ad-attack-lab/) | Taking a Windows domain from an unauthenticated foothold to Domain Admin using **only misconfigurations — no software exploits**. Kerberoasting, AS-REP roasting, credential-in-description, and a weak-password path to DA. Plus a [**detection companion**](ad-attack-lab/detection/): the telemetry each step leaves and Sigma rules to catch it. |
 | [**Firewall throughput lab**](firewall-throughput-lab/) | Two VLANs behind a FortiGate, benchmarked with iperf3. The interesting part is not the numbers but working out **why** they are what they are: the ceiling is packet rate, not bandwidth, and single numbers are noise until you run them several times. |
 
 Both run on a single machine (nested KVM → EVE-NG → the lab nodes), completely

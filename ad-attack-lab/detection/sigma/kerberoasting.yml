@@ -1,0 +1,32 @@
+title: Kerberoasting - RC4 service ticket request
+id: a29177e1-1f51-4b40-aec0-dd5aa3246fa6
+status: experimental
+description: >
+  A Kerberos service ticket (TGS, event 4769) requested with RC4-HMAC
+  encryption for a user service account. Attackers request the ticket to
+  crack the service account's password offline. The strong signal is one
+  principal requesting many distinct SPNs in a short window.
+references:
+  - https://github.com/1chunghu/security-labs/tree/main/ad-attack-lab
+author: 1chung
+date: 2026-09-18
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4769
+    TicketEncryptionType: '0x17'
+    TicketOptions: '0x40810000'
+  filter_machine:
+    ServiceName|endswith: '$'
+  filter_krbtgt:
+    ServiceName: 'krbtgt'
+  condition: selection and not 1 of filter_*
+falsepositives:
+  - Legacy applications that still negotiate RC4 service tickets. Baseline the
+    normal RC4 SPNs first, then alert on new ones or on volume per requester.
+level: medium
+tags:
+  - attack.credential_access
+  - attack.t1558.003

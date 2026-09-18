@@ -88,6 +88,12 @@ nxc smb 10.10.10.10 -u backupadm -p '<pass>'
 # -> (Pwn3d!)
 ```
 
+## Detecting all of this
+
+The attack is only half the picture. A companion write-up pairs every step above with the telemetry it leaves and a rule to catch it — Sigma rules for AS-REP roasting, Kerberoasting and the password spray, plus an honest note on the one step (a password in a `description` field) that is **not** detectable at read time and has to be hunted instead.
+
+→ [**detection/**](detection/)
+
 ## Defensive reading
 
 Every step above maps to a control that costs nothing:
