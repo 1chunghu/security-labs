@@ -9,25 +9,7 @@ actually limits it.
 
 ## Topology
 
-```
-        VLAN 10                                  VLAN 20
-     10.0.10.0/24                             10.0.20.0/24
-
-   ┌─────────────┐                          ┌─────────────┐
-   │     PC1     │                          │     PC2     │
-   │ 10.0.10.100 │                          │ 10.0.20.100 │
-   └──────┬──────┘                          └──────┬──────┘
-          │ access/VLAN10                          │ access/VLAN20
-       ┌──┴────────────────  SW1 (L2)  ────────────┴──┐
-       │        Et0/0,Et0/2            Et0/1,Et0/3     │
-       └──────┬──────────────────────────────┬────────┘
-        port2 │ 10.0.10.1            10.0.20.1 │ port3
-           ┌──┴──────────────────────────────┴──┐
-           │            FortiGate                │  policies:
-           │   VLAN10 <-> VLAN20 (both ways)     │  VLAN10<->VLAN20
-           │   internal -> WAN (NAT)             │  internal->WAN
-           └─────────────────────────────────────┘
-```
+![topology: PC1 on VLAN10 and PC2 on VLAN20 routed through a FortiGate](topology.svg)
 
 Every VLAN10↔VLAN20 flow is routed and policy-checked by the firewall; a
 same-VLAN flow only touches the switch. Comparing the two isolates the

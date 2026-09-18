@@ -8,19 +8,7 @@ CVE. Nothing here needs the target to be unpatched.
 
 ## Topology
 
-```
-              domain: lab.local  (isolated, no gateway)
-                    10.10.10.0/24
-
-   ┌─────────────┐      ┌─────────────┐      ┌─────────────┐
-   │    DC01     │      │    WS01     │      │    kali     │
-   │ 10.10.10.10 │      │ 10.10.10.20 │      │ 10.10.10.50 │
-   │  Server2022 │      │  Server2022 │      │  attacker   │
-   │  AD DS+DNS  │      │  domain     │      │             │
-   │             │      │  member     │      │             │
-   └──────┬──────┘      └──────┬──────┘      └──────┬──────┘
-          └────────────────────┴─── L2 switch ──────┘
-```
+![lab.local topology: DC01, WS01 and kali on one isolated segment](topology.svg)
 
 - **DC01** — domain controller for `lab.local`, DNS points at itself, no default
   gateway (fully isolated).
