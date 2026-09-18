@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+  <rect width="720" height="400" rx="10" fill="#2e3440"/>
+  <text x="360" y="32" text-anchor="middle" fill="#eceff4" font-size="17" font-weight="600">Switching Security Lab</text>
+  <text x="360" y="54" text-anchor="middle" fill="#81a1c1" font-size="12.5">redundant L2 triangle &#8226; VLAN 1 &#8226; Cisco IOL</text>
+
+  <!-- links (draw first, under nodes) -->
+  <!-- triangle: SW1-SW2, SW1-SW3, SW2-SW3 -->
+  <line x1="360" y1="150" x2="235" y2="250" stroke="#4c566a" stroke-width="2"/>
+  <line x1="360" y1="150" x2="485" y2="250" stroke="#4c566a" stroke-width="2"/>
+  <line x1="285" y1="270" x2="435" y2="270" stroke="#4c566a" stroke-width="2"/>
+  <!-- SW3 - SW5 (two links, one blocked by STP) -->
+  <line x1="500" y1="298" x2="560" y2="342" stroke="#bf616a" stroke-width="2"/>
+  <line x1="480" y1="300" x2="545" y2="345" stroke="#bf616a" stroke-width="2" stroke-dasharray="5 4"/>
+
+  <!-- SW1 (root) -->
+  <rect x="300" y="112" width="120" height="46" rx="8" fill="#3b4252" stroke="#a3be8c" stroke-width="1.5"/>
+  <text x="360" y="132" text-anchor="middle" fill="#a3be8c" font-size="13" font-weight="600">SW1</text>
+  <text x="360" y="149" text-anchor="middle" fill="#9aa5b8" font-size="10.5">root bridge (pinned)</text>
+
+  <!-- SW2 -->
+  <rect x="175" y="248" width="110" height="44" rx="8" fill="#3b4252" stroke="#88c0d0" stroke-width="1.3"/>
+  <text x="230" y="267" text-anchor="middle" fill="#88c0d0" font-size="13" font-weight="600">SW2</text>
+  <text x="230" y="283" text-anchor="middle" fill="#9aa5b8" font-size="10.5">secondary root</text>
+
+  <!-- SW3 -->
+  <rect x="435" y="248" width="110" height="44" rx="8" fill="#3b4252" stroke="#88c0d0" stroke-width="1.3"/>
+  <text x="490" y="267" text-anchor="middle" fill="#88c0d0" font-size="13" font-weight="600">SW3</text>
+  <text x="490" y="283" text-anchor="middle" fill="#9aa5b8" font-size="10.5">access-layer uplink</text>
+
+  <!-- SW5 attacker -->
+  <rect x="520" y="340" width="150" height="50" rx="8" fill="#3b4252" stroke="#bf616a" stroke-width="1.6"/>
+  <text x="595" y="360" text-anchor="middle" fill="#bf616a" font-size="13" font-weight="600">SW5 &#8212; attacker</text>
+  <text x="595" y="378" text-anchor="middle" fill="#9aa5b8" font-size="10.5">claims priority 0 &#8594; steals root</text>
+
+  <!-- root-guard marker on SW3 downlink -->
+  <text x="470" y="326" text-anchor="middle" fill="#ebcb8b" font-size="10.5" font-weight="600">root guard</text>
+
+  <!-- legend -->
+  <text x="150" y="360" fill="#616e88" font-size="10.5">&#8212;&#8212; forwarding</text>
+  <text x="150" y="378" fill="#616e88" font-size="10.5">- - -  STP-blocked</text>
+</svg>
